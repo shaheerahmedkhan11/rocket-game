@@ -6,6 +6,9 @@ public class Movement : MonoBehaviour
 {
     [SerializeField]
     private float Thrust = 100f;
+
+    [SerializeField]
+    private float Rotationthrust;
     private Rigidbody rb;
     // Start is called before the first frame update
     void Start()
@@ -31,12 +34,24 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.A))
         {
-            print("Keycode A pressed - Rotating left");
+            Apply_Rotation_Forwards(Rotationthrust);
         }
 
         else if (Input.GetKey(KeyCode.D))
         {
-            print("Keycode A pressed - Rotating right");
+            Apply_Rotation_Backwards(Rotationthrust);
         }
+    }
+    private void Apply_Rotation_Forwards(float rotationSpeed)
+    {
+        rb.freezeRotation = true;
+        transform.Rotate(rotationSpeed * Time.deltaTime * Vector3.forward);
+        rb.freezeRotation = false;
+    }
+    private void Apply_Rotation_Backwards(float rotationSpeed)
+    {
+        rb.freezeRotation = true;
+        transform.Rotate(rotationSpeed * Time.deltaTime * Vector3.back);
+        rb.freezeRotation = false;
     }
 }
