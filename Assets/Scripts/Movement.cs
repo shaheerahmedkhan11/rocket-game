@@ -28,19 +28,21 @@ public class Movement : MonoBehaviour
 
     private void Rocket_Thrust()
     {
-        if (Input.GetKey(KeyCode.K))
-        {
-            audioSource.Play();
-            if (!audioSource.isPlaying)
-            {
-                audioSource.Play();
-            }
-        }
+
         if (Input.GetKey(KeyCode.K))
         {
             rb.AddRelativeForce(Thrust * Time.deltaTime * Vector3.up);
-            
+            if(!audioSource.isPlaying)
+            {
+                audioSource.Play();
+            }
+
         }
+        else
+        {
+            audioSource.Stop();
+        }
+       
     }
     private void Rocket_Rotation()
     {
