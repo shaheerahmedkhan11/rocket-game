@@ -12,6 +12,8 @@ public class Movement : MonoBehaviour
 
     private Rigidbody rb;
     AudioSource audioSource;
+    [SerializeField]
+    AudioClip mainEngine;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +36,7 @@ public class Movement : MonoBehaviour
             rb.AddRelativeForce(Thrust * Time.deltaTime * Vector3.up);
             if(!audioSource.isPlaying)
             {
-                audioSource.Play();
+                audioSource.PlayOneShot(mainEngine);
             }
 
         }

@@ -5,6 +5,15 @@ using UnityEngine.SceneManagement;
 
 public class CollisionManager : MonoBehaviour
 {
+    [SerializeField]
+    float DelayInReload = 2f;
+    [SerializeField]
+    AudioClip Death, Success;
+    AudioSource audio_source;
+    private void Start()
+    {
+        audio_source = GetComponent<AudioSource>();
+    }
     private void OnCollisionEnter(Collision collision)
     {
         switch(collision.gameObject.tag)
@@ -16,14 +25,28 @@ public class CollisionManager : MonoBehaviour
                 Debug.Log("This object is friendly");break;
             case "Finish":
                 Debug.Log("Congrats! You have reached the finish point!");
-                Load_Next_Level();
+                StartSuccessSequence();
                 break;
             default:
                 Debug.Log("Out of bounds!You blew up");
-                Invoke("Reload_Level", 2f);
+                StartCrashSequence();
                 break;
 
         }
+    }
+    void StartCrashSequence()
+    {
+        audio_source.PlayOneShot(Death);
+        Invoke("Reload_Level", DelayInReload);
+        GetComponent<Movement>().enabled = false;
+        
+    }
+    void StartSuccessSequence()
+    {
+        audio_source.PlayOneShot(Success);
+        Invoke("Load_Next_Level", DelayInReload);
+        GetComponent<Movement>().enabled = false;
+        
     }
     void Load_Next_Level()
     {

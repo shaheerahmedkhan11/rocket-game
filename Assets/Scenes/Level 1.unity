@@ -470,6 +470,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ground
       objectReference: {fileID: 0}
+    - target: {fileID: 8488082258860665410, guid: bb50e7a36ef49434386f5668addfa285, type: 3}
+      propertyPath: m_TagString
+      value: friendly
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -527,14 +531,30 @@ PrefabInstance:
       propertyPath: m_Name
       value: Rocket
       objectReference: {fileID: 0}
+    - target: {fileID: 2173969313931272103, guid: 91fa65a4dcd116943afd4819e0f88f6d, type: 3}
+      propertyPath: mainEngine
+      value: 
+      objectReference: {fileID: 8300000, guid: d083125c787455644acd05906e27e971, type: 3}
+    - target: {fileID: 3103847639070575078, guid: 91fa65a4dcd116943afd4819e0f88f6d, type: 3}
+      propertyPath: Death
+      value: 
+      objectReference: {fileID: 8300000, guid: 524ad72ab44b8a54fbb4cefb3d78cec5, type: 3}
     - target: {fileID: 3103847639070575078, guid: 91fa65a4dcd116943afd4819e0f88f6d, type: 3}
       propertyPath: sphere
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3103847639070575078, guid: 91fa65a4dcd116943afd4819e0f88f6d, type: 3}
+      propertyPath: Success
+      value: 
+      objectReference: {fileID: 8300000, guid: 6e85941693a7d084a869b596e3417fc7, type: 3}
     - target: {fileID: 6067233362332795205, guid: 91fa65a4dcd116943afd4819e0f88f6d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: d69dfd160bdf7a340911557a25e2c457, type: 2}
+    - target: {fileID: 8666064972166119702, guid: 91fa65a4dcd116943afd4819e0f88f6d, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
