@@ -5,37 +5,40 @@ using UnityEngine.SceneManagement;
 
 public class CollisionManager : MonoBehaviour
 {
-    [SerializeField]
-    float DelayInReload = 2f;
-    [SerializeField]
-    AudioClip Death, Success;
+    bool isTransitioning = false;
+
+    [SerializeField] float DelayInReload = 2f;
+    [SerializeField] AudioClip Death, Success;
     AudioSource audio_source;
+
     private void Start()
     {
         audio_source = GetComponent<AudioSource>();
     }
     private void OnCollisionEnter(Collision collision)
     {
-        switch(collision.gameObject.tag)
+        if (isTransitioning == false)
         {
-            case "Fuel":
-                Debug.Log("You have picked up fuel.");
-                break;
-            case "friendly":
-                Debug.Log("This object is friendly");break;
-            case "Finish":
-                Debug.Log("Congrats! You have reached the finish point!");
-                StartSuccessSequence();
-                break;
-            default:
-                Debug.Log("Out of bounds!You blew up");
-                StartCrashSequence();
-                break;
-
+            switch (collision.gameObject.tag)
+            {
+                case "friendly":
+                    Debug.Log("This object is friendly"); break;
+                case "Finish":
+                    Debug.Log("Congrats! You have reached the finish point!");
+                    StartSuccessSequence();
+                    break;
+                default:
+                    Debug.Log("Out of bounds!You blew up");
+                    StartCrashSequence();
+                    break;
+            }
         }
+       
     }
     void StartCrashSequence()
     {
+        isTransitioning = true;
+        audio_source.Stop();
         audio_source.PlayOneShot(Death);
         Invoke("Reload_Level", DelayInReload);
         GetComponent<Movement>().enabled = false;
@@ -43,6 +46,8 @@ public class CollisionManager : MonoBehaviour
     }
     void StartSuccessSequence()
     {
+        isTransitioning = true;
+        audio_source.Stop();
         audio_source.PlayOneShot(Success);
         Invoke("Load_Next_Level", DelayInReload);
         GetComponent<Movement>().enabled = false;
