@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,7 +5,11 @@ public class CollisionManager : MonoBehaviour
 {
     bool isTransitioning = false;
 
-    [SerializeField] float DelayInReload = 2f;
+    [SerializeField] ParticleSystem explosion_particles1;
+    [SerializeField] ParticleSystem explosion_particles2;
+    [SerializeField] ParticleSystem explosion_particles3;
+    [SerializeField] ParticleSystem success_particles;
+    [SerializeField] private float DelayInReload = 2f;
     [SerializeField] AudioClip Death, Success;
     AudioSource audio_source;
 
@@ -40,6 +42,10 @@ public class CollisionManager : MonoBehaviour
         isTransitioning = true;
         audio_source.Stop();
         audio_source.PlayOneShot(Death);
+        explosion_particles1.Play();
+        explosion_particles2.Play();
+        explosion_particles3.Play();
+        success_particles.Play();
         Invoke("Reload_Level", DelayInReload);
         GetComponent<Movement>().enabled = false;
         
