@@ -6,7 +6,7 @@ public class Movement : MonoBehaviour
 {
     [SerializeField]
     private float Thrust = 100f;
-
+    [SerializeField] public ParticleSystem rocketThrust, sideThrust1, sideThrust2, sideThrust3, sideThrust4;
     [SerializeField]
     private float Rotationthrust;
 
@@ -33,6 +33,12 @@ public class Movement : MonoBehaviour
 
         if (Input.GetKey(KeyCode.K))
         {
+            rocketThrust.Play();
+            sideThrust1.Play();
+            sideThrust2.Play();
+            sideThrust3.Play();
+            sideThrust4.Play();
+        
             rb.AddRelativeForce(Thrust * Time.deltaTime * Vector3.up);
             if(!audioSource.isPlaying)
             {
@@ -43,6 +49,7 @@ public class Movement : MonoBehaviour
         else
         {
             audioSource.Stop();
+           
         }
        
     }

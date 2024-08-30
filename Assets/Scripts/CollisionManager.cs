@@ -4,11 +4,8 @@ using UnityEngine.SceneManagement;
 public class CollisionManager : MonoBehaviour
 {
     bool isTransitioning = false;
-
-    [SerializeField] ParticleSystem explosion_particles1;
-    [SerializeField] ParticleSystem explosion_particles2;
-    [SerializeField] ParticleSystem explosion_particles3;
-    [SerializeField] ParticleSystem success_particles;
+    [SerializeField] ParticleSystem explosion;
+    [SerializeField] ParticleSystem success;
     [SerializeField] private float DelayInReload = 2f;
     [SerializeField] AudioClip Death, Success;
     AudioSource audio_source;
@@ -16,6 +13,8 @@ public class CollisionManager : MonoBehaviour
     private void Start()
     {
         audio_source = GetComponent<AudioSource>();
+        success.Stop();
+        explosion.Stop();
     }
     private void OnCollisionEnter(Collision collision)
     {
@@ -28,10 +27,12 @@ public class CollisionManager : MonoBehaviour
                 case "Finish":
                     Debug.Log("Congrats! You have reached the finish point!");
                     StartSuccessSequence();
+                    success.Play();
                     break;
                 default:
                     Debug.Log("Out of bounds!You blew up");
                     StartCrashSequence();
+                    explosion.Play();
                     break;
             }
         }
@@ -42,13 +43,8 @@ public class CollisionManager : MonoBehaviour
         isTransitioning = true;
         audio_source.Stop();
         audio_source.PlayOneShot(Death);
-        explosion_particles1.Play();
-        explosion_particles2.Play();
-        explosion_particles3.Play();
-        success_particles.Play();
         Invoke("Reload_Level", DelayInReload);
         GetComponent<Movement>().enabled = false;
-        
     }
     void StartSuccessSequence()
     {

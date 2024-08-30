@@ -535,6 +535,10 @@ PrefabInstance:
       propertyPath: mainEngine
       value: 
       objectReference: {fileID: 8300000, guid: d083125c787455644acd05906e27e971, type: 3}
+    - target: {fileID: 2173969313931272103, guid: 91fa65a4dcd116943afd4819e0f88f6d, type: 3}
+      propertyPath: rocketThrust
+      value: 
+      objectReference: {fileID: 3407229832135758439}
     - target: {fileID: 3103847639070575078, guid: 91fa65a4dcd116943afd4819e0f88f6d, type: 3}
       propertyPath: Death
       value: 
@@ -560,6 +564,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 91fa65a4dcd116943afd4819e0f88f6d, type: 3}
+--- !u!198 &3407229832135758439 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 3312812447656182684, guid: 91fa65a4dcd116943afd4819e0f88f6d, type: 3}
+  m_PrefabInstance: {fileID: 3407229832135758438}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4041483020846211352
 PrefabInstance:
   m_ObjectHideFlags: 0
