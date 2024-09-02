@@ -9,6 +9,7 @@ public class CollisionManager : MonoBehaviour
     [SerializeField] private float DelayInReload = 2f;
     [SerializeField] AudioClip Death, Success;
     AudioSource audio_source;
+    private bool Disable_Collisions = false;
 
     private void Start()
     {
@@ -16,26 +17,39 @@ public class CollisionManager : MonoBehaviour
         success.Stop();
         explosion.Stop();
     }
+    private void Update()
+    {
+        Cheat_code();
+    }
+    void Cheat_code()
+    {
+        if(Input.GetKeyDown(KeyCode.N))
+        {
+            Load_Next_Level();
+        }
+        else if(Input.GetKeyDown(KeyCode.C))
+        {
+            Disable_Collisions = !Disable_Collisions;
+        }
+    }
     private void OnCollisionEnter(Collision collision)
     {
-        if (isTransitioning == false)
+        if (isTransitioning || Disable_Collisions) return;
+        switch (collision.gameObject.tag)
         {
-            switch (collision.gameObject.tag)
-            {
-                case "friendly":
-                    Debug.Log("This object is friendly"); break;
-                case "Finish":
-                    Debug.Log("Congrats! You have reached the finish point!");
-                    StartSuccessSequence();
-                    success.Play();
-                    break;
-                default:
-                    Debug.Log("Out of bounds!You blew up");
-                    StartCrashSequence();
-                    explosion.Play();
-                    break;
+            case "friendly":
+                Debug.Log("This object is friendly"); break;
+            case "Finish":
+                Debug.Log("Congrats! You have reached the finish point!");
+                StartSuccessSequence();
+                success.Play();
+                break;
+            default:
+                Debug.Log("Out of bounds!You blew up");
+                StartCrashSequence();
+                explosion.Play();
+                break;
             }
-        }
        
     }
     void StartCrashSequence()

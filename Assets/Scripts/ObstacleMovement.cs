@@ -6,7 +6,6 @@ public class ObstacleMovement : MonoBehaviour
 {
     [SerializeField]
     float duration = 5f;
-    [SerializeField]
     public Transform startPoint, endPoint;
     // Start is called before the first frame update
     void Start()
